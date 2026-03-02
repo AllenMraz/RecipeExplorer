@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Recipe Explorer</string>
+    <string name="navigation_drawer">Navigation Drawer</string>
+    <string name="navigation_rail">Navigation Rail</string>
 
     <string name="recipe_1_name">Spaghetti Bolognese</string>
     <string name="recipe_1_details">A classic Italian Dish with rich meat sauce.</string>

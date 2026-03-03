@@ -17,7 +17,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +34,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.core.app.NotificationCompat
 import com.example.recipeexplorer.data.Recipe
 
 
@@ -53,7 +61,6 @@ fun RecipeDetailsScreen(
             item {
                 if (isFullScreen) {
                     RecipeDetailsScreenTopBar(
-                        onBackPressed,
                         recipeUiState,
                         Modifier
                             .fillMaxSize()
@@ -65,6 +72,7 @@ fun RecipeDetailsScreen(
                 }
 
                 RecipeDetailsCard(
+                    onBackPressed = onBackPressed,
                     recipe = recipeUiState.currentSelectedRecipe,
                     isFullScreen = isFullScreen,
                     modifier = if (isFullScreen) {
@@ -80,7 +88,6 @@ fun RecipeDetailsScreen(
 
 @Composable
 private fun RecipeDetailsScreenTopBar(
-    onBackPressed: () -> Unit,
     recipeUiState: RecipeUiState,
     modifier: Modifier = Modifier
 ){
@@ -98,6 +105,7 @@ private fun RecipeDetailsScreenTopBar(
 
 @Composable
 private fun RecipeDetailsCard(
+    onBackPressed: () -> Unit,
     recipe: Recipe,
     modifier: Modifier,
     isFullScreen: Boolean = false
@@ -108,6 +116,7 @@ private fun RecipeDetailsCard(
             .padding(dimensionResource(R.dimen.detail_card_inner_padding))
     ) {
         DetailsScreenHeader(
+            onButtonClicked = onBackPressed,
             recipe,
             Modifier.fillMaxSize()
         )
@@ -130,9 +139,23 @@ private fun RecipeDetailsCard(
 }
 
 @Composable
-private fun DetailsScreenHeader(recipe: Recipe, modifier: Modifier = Modifier)
+private fun DetailsScreenHeader(
+    onButtonClicked: () -> Unit,
+    recipe: Recipe,
+    modifier: Modifier = Modifier)
 {
     Row(modifier = modifier) {
+        IconButton(
+            onClick = onButtonClicked,
+            modifier = Modifier
+                .padding(horizontal = dimensionResource(R.dimen.detail_topbar_back_button_padding_horizontal))
+                .background(MaterialTheme.colorScheme.surface, shape = CircleShape)
+        ){
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = stringResource(R.string.navigation_back)
+            )
+        }
         Column(
             modifier = Modifier
                 .weight(1f)

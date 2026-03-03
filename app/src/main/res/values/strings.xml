@@ -3,6 +3,7 @@
     <string name="navigation_drawer">Navigation Drawer</string>
     <string name="navigation_rail">Navigation Rail</string>
     <string name="details_screen">Details Screen</string>
+    <string name="navigation_back">Back</string>
 
     <string name="empty_recipe">Select Recipe</string>
 

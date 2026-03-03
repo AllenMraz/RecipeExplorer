@@ -54,4 +54,5 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     implementation(libs.androidx.compose.material3.window.size.class1)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 }

@@ -18,11 +18,13 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.example.recipeexplorer.data.Recipe
+import com.example.recipeexplorer.ui.utils.RecipeContentType
 import com.example.recipeexplorer.ui.utils.RecipeNavigationType
 
 @Composable
 fun RecipeHomeScreen(
     navigationType: RecipeNavigationType,
+    contentType: RecipeContentType,
     recipeUiState: RecipeUiState,
     onRecipeCardPressed: (Recipe) -> Unit,
     onDetailScreenBackPressed: () -> Unit,

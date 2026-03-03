@@ -13,7 +13,7 @@ fun RecipeListOnlyContent(
     onRecipeCardPressed: (Recipe) -> Unit,
     modifier: Modifier = Modifier
 ){
-    val recipes = recipeUiState.currentRecipe
+    val recipes = recipeUiState
     LazyColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(

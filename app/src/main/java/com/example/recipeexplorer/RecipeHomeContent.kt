@@ -2,10 +2,16 @@ package com.example.recipeexplorer
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,6 +28,7 @@ fun RecipeListOnlyContent(
     val recipes = recipeUiState.currentRecipes
     LazyColumn(
         modifier = modifier,
+        contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
         verticalArrangement = Arrangement.spacedBy(
             dimensionResource(R.dimen.recipe_list_item_vertical_spacing)
         )
@@ -47,15 +54,27 @@ fun RecipeListItem(
     onCardClick: () -> Unit,
     modifier: Modifier = Modifier
 ){
-    Column(
-        modifier= Modifier.fillMaxSize()
-            .padding(dimensionResource((R.dimen.recipe_list_item_inner_padding)))
-    ){
-        Text(
-            text = stringResource(recipe.name),
-        )
-        Text(
-            text = stringResource((recipe.description))
-        )
+    Card(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(
+            containerColor = if (selected){
+                MaterialTheme.colorScheme.primaryContainer
+            } else {
+                MaterialTheme.colorScheme.secondaryContainer
+            }
+        ),
+        onClick = onCardClick
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+                .padding(dimensionResource((R.dimen.recipe_list_item_inner_padding)))
+        ) {
+            Text(
+                text = stringResource(recipe.name),
+            )
+            Text(
+                text = stringResource((recipe.description))
+            )
+        }
     }
 }

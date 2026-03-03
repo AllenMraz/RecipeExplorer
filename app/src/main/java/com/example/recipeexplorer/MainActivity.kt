@@ -44,6 +44,8 @@ class MainActivity : ComponentActivity() {
                         )
                 ){
                     val windowSize = calculateWindowSizeClass(this)
+
+                    RecipeExplorerApp(windowSize = windowSize.widthSizeClass)
                 }
             }
         }

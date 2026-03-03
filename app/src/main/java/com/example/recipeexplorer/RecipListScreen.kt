@@ -56,6 +56,13 @@ fun RecipeHomeScreen(
                 onRecipeCardPressed =onRecipeCardPressed,
                 modifier = modifier
             )
+        } else {
+            RecipeDetailsScreen(
+                recipeUiState = recipeUiState,
+                onBackPressed = onDetailScreenBackPressed,
+                modifier = modifier,
+                isFullScreen = true
+            )
         }
     }
 

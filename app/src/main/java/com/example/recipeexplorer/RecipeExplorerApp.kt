@@ -43,7 +43,12 @@ fun RecipeExplorerApp(
         contentType = contentType,
         recipeUiState = recipeUiState,
         onRecipeCardPressed = {recipe: Recipe ->
-            viewModel.updateDetailsScreenStates(recipe = recipe)
+            if (contentType == RecipeContentType.LIST_AND_DETAIL) {
+                viewModel.updateDetailsScreenStates(recipe = recipe)
+                viewModel.resetHomeScreensStates()
+            }else{
+                viewModel.updateDetailsScreenStates(recipe = recipe)
+            }
         },
         onDetailScreenBackPressed = {viewModel.resetHomeScreensStates()},
         modifier = modifier

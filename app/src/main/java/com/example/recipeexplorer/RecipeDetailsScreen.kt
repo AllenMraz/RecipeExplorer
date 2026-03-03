@@ -115,13 +115,14 @@ private fun RecipeDetailsCard(
             .fillMaxSize()
             .padding(dimensionResource(R.dimen.detail_card_inner_padding))
     ) {
-        DetailsScreenHeader(
-            onButtonClicked = onBackPressed,
-            recipe,
-            Modifier.fillMaxSize()
-        )
+
         if(isFullScreen){
             Spacer(modifier = modifier.height(dimensionResource(R.dimen.detail_content_padding_top)))
+            DetailsScreenHeader(
+                onButtonClicked = onBackPressed,
+                recipe,
+                Modifier.fillMaxSize()
+            )
         } else {
             Text(
                 text = stringResource(recipe.name),

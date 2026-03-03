@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PermanentDrawerSheet
@@ -43,6 +44,7 @@ fun RecipeHomeScreen(
         ) {
             RecipeAppContent(
                 navigationType = navigationType,
+                contentType = contentType,
                 recipeUiState = recipeUiState,
                 onRecipeCardPressed = onRecipeCardPressed,
                 modifier = modifier
@@ -52,6 +54,7 @@ fun RecipeHomeScreen(
         if (recipeUiState.isShowingHomepage){
             RecipeAppContent(
                 navigationType = navigationType,
+                contentType = contentType,
                 recipeUiState = recipeUiState,
                 onRecipeCardPressed =onRecipeCardPressed,
                 modifier = modifier
@@ -71,6 +74,7 @@ fun RecipeHomeScreen(
 @Composable
 private fun RecipeAppContent(
     navigationType:  RecipeNavigationType,
+    contentType: RecipeContentType,
     recipeUiState: RecipeUiState,
     onRecipeCardPressed: (Recipe) -> Unit,
     modifier: Modifier
@@ -86,13 +90,22 @@ private fun RecipeAppContent(
         Column(
             modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.inverseOnSurface)
         ){
-         RecipeListOnlyContent(
-             recipeUiState = recipeUiState,
-             onRecipeCardPressed = onRecipeCardPressed,
-             modifier = Modifier.weight(1f)
-                 .padding(horizontal = dimensionResource(R.dimen.recipe_list_only_horizontal_padding))
-                 .padding(top = dimensionResource(R.dimen.detail_subject_padding_end))
-         )
+            if (contentType == RecipeContentType.LIST_AND_DETAIL){
+                RecipeListAndDetailContent(
+                    recipeUiState = recipeUiState,
+                    onRecipeCardPressed = onRecipeCardPressed,
+                    modifier = Modifier
+                        .statusBarsPadding()
+                        .weight(1f)
+                )
+            }else {
+                RecipeListOnlyContent(
+                    recipeUiState = recipeUiState,
+                    onRecipeCardPressed = onRecipeCardPressed,
+                    modifier = Modifier.weight(1f)
+                        .padding(horizontal = dimensionResource(R.dimen.recipe_list_only_horizontal_padding))
+                )
+            }
         }
     }
 }

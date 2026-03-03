@@ -41,7 +41,21 @@ fun RecipeHomeScreen(
             },
             modifier = Modifier.testTag(navigationDrawerContentDeprecated)
         ) {
-
+            RecipeAppContent(
+                navigationType = navigationType,
+                recipeUiState = recipeUiState,
+                onRecipeCardPressed = onRecipeCardPressed,
+                modifier = modifier
+            )
+        }
+    } else {
+        if (recipeUiState.isShowingHomepage){
+            RecipeAppContent(
+                navigationType = navigationType,
+                recipeUiState = recipeUiState,
+                onRecipeCardPressed =onRecipeCardPressed,
+                modifier = modifier
+            )
         }
     }
 

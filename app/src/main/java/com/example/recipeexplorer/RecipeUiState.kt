@@ -8,5 +8,5 @@ data class RecipeUiState(
     val currentSelectedRecipe: Recipe = LocalRecipes.emptyRecipe,
     val isShowingHomepage: Boolean = true
     ){
-
+    val currentRecipes: List<Recipe> by lazy {recipeList}
 }

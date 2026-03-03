@@ -22,6 +22,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.recipeexplorer.ui.theme.RecipeExplorerTheme
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import com.example.recipeexplorer.data.Recipe
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
@@ -45,5 +47,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RecipeAppPreview(){
+    Surface() {
+        RecipeExplorerApp(
+            WindowWidthSizeClass.Compact
+        )
     }
 }

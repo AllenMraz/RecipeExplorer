@@ -29,9 +29,9 @@ object LocalRecipes{
         return allRecipes.firstOrNull(){it.id == id}
     }
 
-    val emptyRecipe = Recipe(
+    val emptyRecipe = Recipe( // when no recipe is selected
         id = 0,
         name = R.string.empty_recipe,
-        description = R.string.empty_recipe
+        description = R.string.empty_recipe_details
     )
 }

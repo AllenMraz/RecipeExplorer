@@ -6,6 +6,7 @@
     <string name="navigation_back">Back</string>
 
     <string name="empty_recipe">Select Recipe</string>
+    <string name="empty_recipe_details">Please select recipe</string>
 
     <string name="recipe_1_name">Spaghetti Bolognese</string>
     <string name="recipe_1_details">A classic Italian Dish with rich meat sauce.</string>

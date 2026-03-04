@@ -1,10 +1,8 @@
 package com.example.recipeexplorer
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -14,7 +12,6 @@ import androidx.compose.material3.PermanentDrawerSheet
 import androidx.compose.material3.PermanentNavigationDrawer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -23,7 +20,7 @@ import com.example.recipeexplorer.ui.utils.RecipeContentType
 import com.example.recipeexplorer.ui.utils.RecipeNavigationType
 
 @Composable
-fun RecipeHomeScreen(
+fun RecipeHomeScreen( // method that calls the display depending on screen size
     navigationType: RecipeNavigationType,
     contentType: RecipeContentType,
     recipeUiState: RecipeUiState,
@@ -42,7 +39,7 @@ fun RecipeHomeScreen(
             },
             modifier = Modifier.testTag(navigationDrawerContentDeprecated)
         ) {
-            RecipeAppContent(
+            RecipeAppContent( // calls an method that gets the display
                 navigationType = navigationType,
                 contentType = contentType,
                 recipeUiState = recipeUiState,
@@ -52,7 +49,7 @@ fun RecipeHomeScreen(
         }
     } else {
         if (recipeUiState.isShowingHomepage){
-            RecipeAppContent(
+            RecipeAppContent( // calls an method that gets the display
                 navigationType = navigationType,
                 contentType = contentType,
                 recipeUiState = recipeUiState,
@@ -60,7 +57,7 @@ fun RecipeHomeScreen(
                 modifier = modifier
             )
         } else {
-            RecipeDetailsScreen(
+            RecipeDetailsScreen( // displays the detail screen
                 recipeUiState = recipeUiState,
                 onBackPressed = onDetailScreenBackPressed,
                 modifier = modifier,
@@ -72,7 +69,7 @@ fun RecipeHomeScreen(
 }
 
 @Composable
-private fun RecipeAppContent(
+private fun RecipeAppContent( // method that calls the list display acording to screen size
     navigationType:  RecipeNavigationType,
     contentType: RecipeContentType,
     recipeUiState: RecipeUiState,
@@ -81,17 +78,11 @@ private fun RecipeAppContent(
 ) {
     Box(modifier = modifier){
 
-        Row(modifier = modifier.fillMaxSize()){
-            AnimatedVisibility(visible = navigationType == RecipeNavigationType.NAVIGATION_RAIL) {
-                val navigationRailContentDeprecated = stringResource(R.string.navigation_rail)
-
-            }
-        }
         Column(
             modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.inverseOnSurface)
         ){
             if (contentType == RecipeContentType.LIST_AND_DETAIL){
-                RecipeListAndDetailContent(
+                RecipeListAndDetailContent( // displays both list and detail content
                     recipeUiState = recipeUiState,
                     onRecipeCardPressed = onRecipeCardPressed,
                     modifier = Modifier
@@ -99,7 +90,7 @@ private fun RecipeAppContent(
                         .weight(1f)
                 )
             }else {
-                RecipeListOnlyContent(
+                RecipeListOnlyContent( // only displays list
                     recipeUiState = recipeUiState,
                     onRecipeCardPressed = onRecipeCardPressed,
                     modifier = Modifier.weight(1f)

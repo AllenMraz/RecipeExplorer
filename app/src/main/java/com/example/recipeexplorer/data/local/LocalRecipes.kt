@@ -5,7 +5,7 @@ import com.example.recipeexplorer.data.Recipe
 
 object LocalRecipes{
 
-    val allRecipes = listOf(
+    val allRecipes = listOf( // list of recipes
 
         Recipe(
              id = 1,

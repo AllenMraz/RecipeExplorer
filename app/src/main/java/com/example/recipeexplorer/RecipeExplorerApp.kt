@@ -10,7 +10,7 @@ import com.example.recipeexplorer.ui.utils.RecipeContentType
 import com.example.recipeexplorer.ui.utils.RecipeNavigationType
 
 @Composable
-fun RecipeExplorerApp(
+fun RecipeExplorerApp( // the main body of the app that determins screen size and how to display infomation
     windowSize: WindowWidthSizeClass,
     modifier: Modifier = Modifier,
 ){
@@ -26,7 +26,7 @@ fun RecipeExplorerApp(
 
         WindowWidthSizeClass.Medium -> {
             navigationType = RecipeNavigationType.NAVIGATION_RAIL
-            contentType= RecipeContentType.LIST_ONLY
+            contentType= RecipeContentType.LIST_AND_DETAIL
         }
 
         WindowWidthSizeClass.Expanded -> {
@@ -38,7 +38,7 @@ fun RecipeExplorerApp(
             contentType = RecipeContentType.LIST_ONLY
         }
     }
-    RecipeHomeScreen(
+    RecipeHomeScreen( // calls the method RecipeHomeScreen which is the method that builds the lay out of the recipe list
         navigationType = navigationType,
         contentType = contentType,
         recipeUiState = recipeUiState,

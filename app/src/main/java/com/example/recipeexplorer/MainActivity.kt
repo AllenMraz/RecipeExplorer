@@ -9,12 +9,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,7 +20,6 @@ import com.example.recipeexplorer.ui.theme.RecipeExplorerTheme
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import com.example.recipeexplorer.data.Recipe
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
@@ -43,9 +39,9 @@ class MainActivity : ComponentActivity() {
                                 .calculateEndPadding(layoutDirection)
                         )
                 ){
-                    val windowSize = calculateWindowSizeClass(this)
+                    val windowSize = calculateWindowSizeClass(this) // gets the screen size
 
-                    RecipeExplorerApp(windowSize = windowSize.widthSizeClass)
+                    RecipeExplorerApp(windowSize = windowSize.widthSizeClass) // meatided call for recipExplorerApp
                 }
             }
         }
@@ -61,3 +57,5 @@ fun RecipeAppPreview(){
         )
     }
 }
+
+

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="drawer_width">240dp</dimen>
+    <dimen name="drawer_width">0dp</dimen>
     <dimen name="drawer_padding_header">16dp</dimen>
     <dimen name="drawer_padding_content">12dp</dimen>
 
@@ -24,7 +24,7 @@
     <dimen name="detail_expanded_subject_body_spacing">8dp</dimen>
     <dimen name="detail_button_bar_padding_vertical">20dp</dimen>
     <dimen name="detail_button_bar_item_spacing">4dp</dimen>
-    <dimen name="detail_action_button_padding_vertical">20dp</dimen>
+    <dimen name="detail_action_button_padding_vertical">10dp</dimen>
     <dimen name="detail_topbar_padding_bottom">24dp</dimen>
-    <dimen name="detail_topbar_back_button_padding_horizontal">24dp</dimen>
+    <dimen name="detail_topbar_back_button_padding_horizontal">16dp</dimen>
 </resources>

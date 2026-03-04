@@ -1,13 +1,13 @@
 package com.example.recipeexplorer.ui.theme
 
 import androidx.compose.ui.graphics.Color
-val md_theme_light_primary = Color(0xFF006879)
+val md_theme_light_primary = Color(0xFF00A73F)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
-val md_theme_light_primaryContainer = Color(0xFFA9EDFF)
+val md_theme_light_primaryContainer = Color(0xFFA9BFAA)
 val md_theme_light_onPrimaryContainer = Color(0xFF001F26)
 val md_theme_light_secondary = Color(0xFF4B6268)
 val md_theme_light_onSecondary = Color(0xFFFFFFFF)
-val md_theme_light_secondaryContainer = Color(0xFFCEE7EE)
+val md_theme_light_secondaryContainer = Color(0xFF95BFA0)
 val md_theme_light_onSecondaryContainer = Color(0xFF061F24)
 val md_theme_light_tertiary = Color(0xFF565D7E)
 val md_theme_light_onTertiary = Color(0xFFFFFFFF)

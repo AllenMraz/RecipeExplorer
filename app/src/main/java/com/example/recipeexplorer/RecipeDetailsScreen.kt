@@ -1,12 +1,9 @@
 package com.example.recipeexplorer
 
-import android.widget.Toast
-import android.window.SplashScreen
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,9 +17,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -30,14 +24,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.core.app.NotificationCompat
+import androidx.compose.ui.unit.dp
 import com.example.recipeexplorer.data.Recipe
 
-
+// method that displays the detailed information of a recipe
 @Composable
 fun RecipeDetailsScreen(
     recipeUiState: RecipeUiState,
@@ -60,7 +53,8 @@ fun RecipeDetailsScreen(
         ) {
             item {
                 if (isFullScreen) {
-                    RecipeDetailsScreenTopBar(
+                    RecipeDetailsScreenTopBar( // a call to render the topbar when applicable
+                        onBackPressed = onBackPressed,
                         recipeUiState,
                         Modifier
                             .fillMaxSize()
@@ -71,7 +65,7 @@ fun RecipeDetailsScreen(
                     )
                 }
 
-                RecipeDetailsCard(
+                RecipeDetailsCard( // calls recipeDetailsCard to get the information of the recipe
                     onBackPressed = onBackPressed,
                     recipe = recipeUiState.currentSelectedRecipe,
                     isFullScreen = isFullScreen,
@@ -87,45 +81,53 @@ fun RecipeDetailsScreen(
 }
 
 @Composable
-private fun RecipeDetailsScreenTopBar(
+private fun RecipeDetailsScreenTopBar( // the top bar for the deatail view
+    onBackPressed: () -> Unit,
     recipeUiState: RecipeUiState,
     modifier: Modifier = Modifier
 ){
-    Row(
-       modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ){
-        Text(
-            text = stringResource(recipeUiState.currentSelectedRecipe.name),
 
-        )
+        Row(
+            modifier = modifier
+                .background(MaterialTheme.colorScheme.primary)
+                .padding(top = 16.dp,
+                    bottom = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(
+                onClick = onBackPressed,
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(R.dimen.detail_topbar_back_button_padding_horizontal))
+                    .background(MaterialTheme.colorScheme.surface, shape = CircleShape)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = stringResource(R.string.navigation_back)
+                )
+            }
+            Text(
+                text = stringResource(recipeUiState.currentSelectedRecipe.name),
+
+                )
     }
 
 }
 
 @Composable
-private fun RecipeDetailsCard(
+private fun RecipeDetailsCard( // method that gets the information for the detail
     onBackPressed: () -> Unit,
     recipe: Recipe,
     modifier: Modifier,
     isFullScreen: Boolean = false
 ){
-    Card(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(dimensionResource(R.dimen.detail_card_inner_padding))
-    ) {
 
         if(isFullScreen){
             Spacer(modifier = modifier.height(dimensionResource(R.dimen.detail_content_padding_top)))
-            DetailsScreenHeader(
-                onButtonClicked = onBackPressed,
-                recipe,
-                Modifier.fillMaxSize()
-            )
         } else {
             Text(
                 text = stringResource(recipe.name),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.outline,
                 modifier = Modifier.padding(
                     top = dimensionResource(R.dimen.detail_content_padding_top),
                     bottom = dimensionResource(R.dimen.detail_expanded_subject_body_spacing)
@@ -133,46 +135,14 @@ private fun RecipeDetailsCard(
             )
         }
         Text(
-            text = stringResource((recipe.description)),
-
+            text = stringResource(recipe.description),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(start = 16.dp)
         )
-    }
+
 }
 
-@Composable
-private fun DetailsScreenHeader(
-    onButtonClicked: () -> Unit,
-    recipe: Recipe,
-    modifier: Modifier = Modifier)
-{
-    Row(modifier = modifier) {
-        IconButton(
-            onClick = onButtonClicked,
-            modifier = Modifier
-                .padding(horizontal = dimensionResource(R.dimen.detail_topbar_back_button_padding_horizontal))
-                .background(MaterialTheme.colorScheme.surface, shape = CircleShape)
-        ){
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = stringResource(R.string.navigation_back)
-            )
-        }
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(
-                    horizontal = dimensionResource(R.dimen.recipe_header_content_padding_horizontal),
-                    vertical = dimensionResource((R.dimen.recipe_header_content_padding_vertical))
-
-                ),
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = stringResource(recipe.name)
-            )
-        }
-    }
-}
 
 
 

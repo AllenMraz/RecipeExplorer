@@ -1,1 +1,1 @@
-# RecipeExplorer
+# Go to master branch
